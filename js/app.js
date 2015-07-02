@@ -68,14 +68,19 @@ $(document).ready(function () {
         tr.append("<td>" + value + "</td>");
         $("#trackertable tbody").append(tr);
     });
-    
-    
+
+
     if (typeof (Storage) !== "undefined") {
+
         // load data
-        if (localStorage.days !== "undefined") {
-            
+        if (typeof localStorage.level !== 'undefined' && localStorage.level !== null)
             $("#levelSelect").val(localStorage.level);
-            
+
+
+        if (typeof localStorage.days !== 'undefined' && localStorage.days !== null) {
+
+            console.log("hi");
+
             var days = JSON.parse(localStorage["days"]); // localstorage stores arrays as strings
             console.log(days);
             for (var i = 0; i < days.length; i++)
@@ -96,7 +101,7 @@ $(document).ready(function () {
 
     $(".cb").on("change", static);
     $("#levelSelect").on("change", update);
-    
+
     function static() {
         var daysAwarded = $(".cb:checked").size();
         $("#daysAwarded").text(daysAwarded);
@@ -105,7 +110,7 @@ $(document).ready(function () {
     }
 
     function update() {
-        localStorage["level"] = parseInt($("#levelSelect").val());
+        localStorage["level"] = $("#levelSelect").val();
         var chanceForLevelInPercent = LEVEL_CHANCES[$("#levelSelect").val()];
         $("#chance").text(chanceForLevelInPercent + "%");
         var predictedTotalCrystals = CRYSTALS_PER_DAY * getDates(START_DATE, MAX_DATE).length * rnd(chanceForLevelInPercent) / 100;
