@@ -64,7 +64,7 @@ $(document).ready(function () {
     var dateRange = getDates(START_DATE, endDate);
     dateRange.forEach(function (value) {
         var tr = $("<tr></tr>");
-        tr.append("<td><input type='checkbox' class='cb'/></td>");
+        tr.append("<td class='text-center'><input type='checkbox' class='cb'/></td>");
         tr.append("<td>" + value + "</td>");
         $("#trackertable tbody").append(tr);
     });
