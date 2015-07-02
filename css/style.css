@@ -27,3 +27,12 @@ table {
 .result {
     font-weight: bold;
 }
+
+#actualChance {
+	font-size: 1.2em;
+	font-weight: bold;
+} 
+
+#actualChanceTr {
+	background-color: beige;
+}

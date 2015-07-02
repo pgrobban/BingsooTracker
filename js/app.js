@@ -70,11 +70,19 @@ $(document).ready(function () {
     });
 
 
+    var daysSoFar = dateRange.length;
+    var daysLeft = getDates(START_DATE, MAX_DATE).length - daysSoFar;
+
+
     if (typeof (Storage) !== "undefined") {
 
         // load data
-        if (typeof localStorage.level !== 'undefined' && localStorage.level !== null)
+        if (typeof localStorage.level !== 'undefined' && localStorage.level !== null) {
             $("#levelSelect").val(localStorage.level);
+        }
+        else {
+            $("#mySelect").val(0);
+        }
 
 
         if (typeof localStorage.days !== 'undefined' && localStorage.days !== null) {
@@ -82,43 +90,45 @@ $(document).ready(function () {
             console.log("hi");
 
             var days = JSON.parse(localStorage["days"]); // localstorage stores arrays as strings
-            console.log(days);
+            //console.log(days);
             for (var i = 0; i < days.length; i++)
             {
                 $(".cb").eq(i).prop('checked', days[i]);
             }
-            static();
+            
         }
     } else {
         alert("Your browser has no support for local storage. This means I can't save your data :(");
     }
 
-    var daysSoFar = dateRange.length;
-    var daysLeft = getDates(START_DATE, MAX_DATE).length - daysSoFar;
     $("#daysSoFar").text(daysSoFar);
     $("#daysLeft").text(daysLeft);
     $("#maxCrystalsLeft").text(daysLeft * CRYSTALS_PER_DAY);
 
-    $(".cb").on("change", static);
-    $("#levelSelect").on("change", update);
+    $(".cb").on("change", updateStuff);
+    $("#levelSelect").on("change", updateStuff);
+    updateStuff();
 
-    function static() {
+    function updateStuff() {
         var daysAwarded = $(".cb:checked").size();
         $("#daysAwarded").text(daysAwarded);
-        $("#percentAwarded").text(rnd((daysAwarded / daysSoFar) * 100) + "%");
-        update();
-    }
-
-    function update() {
+        var percentOfDaysAwarded = rnd((daysAwarded / daysSoFar) * 100);
+        $("#actualChance").text(percentOfDaysAwarded + "%");
+        var chanceForLevelInPercent = LEVEL_CHANCES[$("#levelSelect").val()];
+        if (percentOfDaysAwarded >= chanceForLevelInPercent)
+            $("#actualChance").css({"color":"green"});
+        else
+            $("#actualChance").css({"color":"red"});
         localStorage["level"] = $("#levelSelect").val();
         var chanceForLevelInPercent = LEVEL_CHANCES[$("#levelSelect").val()];
-        $("#chance").text(chanceForLevelInPercent + "%");
+        $("#chanceForLevelInPercent").text(chanceForLevelInPercent + "%");
         var predictedTotalCrystals = CRYSTALS_PER_DAY * getDates(START_DATE, MAX_DATE).length * rnd(chanceForLevelInPercent) / 100;
         $("#predictedTotalCrystals").text(predictedTotalCrystals);
         $("#predictedCrystalsLeft").text($("#daysLeft").text() * CRYSTALS_PER_DAY * chanceForLevelInPercent / 100);
 
         localStorage["days"] = JSON.stringify(getArrayOfBooleansFromCheckboxes("cb"));
     }
+
 
 
 });

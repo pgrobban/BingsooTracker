@@ -17,7 +17,8 @@
         <h2>Bingsoo Tracker</h2>
         <p class="text-right">by pgrobban</p>
 
-        <p>Simply select which days you got the crystals. Your days will be saved when you close the browser.</p>
+        <p>Simply select which days you got Crystals. Your selected days and level are automatically saved when you 
+        close the browser.</p>
         <p>You can select days from June 29 until tomorrow (to account for time zone differences with GMT+9), and
             days will be dynamically added until Aug. 28 when you visit this page.</p>
 
@@ -35,8 +36,9 @@
 
         <p>Select treasure level for calculating statistics:
             <select id="levelSelect">
-                <option>+0</option>
-            </select></p>
+                <option value="0">+0</option>
+            </select>
+            </p>
 
         <h4>My statistics</h4>
 
@@ -55,11 +57,11 @@
             </tr>
             <tr>
                 <td class="result">Chance for level according to description:</td>
-                <td id="chance">50%</td>
+                <td id="chanceForLevelInPercent">50%</td>
             </tr>
-            <tr>
+            <tr id="actualChanceTr">
                 <td class="result">Actual chance so far:</td>
-                <td id="percentAwarded">0%</td>
+                <td id="actualChance">0%</td>
             </tr>
             <tr>
                 <td class="result">Maximum possible Crystals left:</td>
