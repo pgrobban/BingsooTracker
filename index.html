@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Bingsoo Tracker</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="js/libs/twitter-bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+
+        <script src="js/libs/jquery/jquery.min.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body>
+        <h2>Bingsoo Tracker</h2>
+        <p class="text-right">by pgrobban</p>
+
+        <p>Simply select which days you got the crystals. Your days will be saved when you close the browser.</p>
+        <p>You can select days from June 29 until tomorrow (to account for time zone differences with GMT+9), and
+            days will be dynamically added until Aug. 28 when you visit this page.</p>
+
+        <table class="table table-responsive" id="trackertable">
+            <thead>
+                <tr>
+                    <th class="col-xs-1"></th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- to be generated dynamically -->
+            </tbody>
+        </table>
+
+        <p>Select treasure level for calculating statistics:
+            <select id="levelSelect">
+                <option>0</option>
+            </select></p>
+
+        <h4>My statistics</h4>
+
+        <table class="table table-responsive">
+            <tr>
+                <td class="result">#days passed:</td>
+                <td id="daysSoFar"></td>
+            </tr>
+            <tr>
+                <td class="result">#days remaining until event ends:</td>
+                <td id="daysLeft"></td>
+            </tr>
+            <tr>
+                <td class="result">#days Crystal have been awarded:</td>
+                <td id="daysAwarded">0</td>
+            </tr>
+            <tr>
+                <td class="result">Chance for level according to description:</td>
+                <td id="chance">50%</td>
+            </tr>
+            <tr>
+                <td class="result">Actual chance so far:</td>
+                <td id="percentAwarded">0%</td>
+            </tr>
+            <tr>
+                <td class="result">Maximum possible Crystals left:</td>
+                <td id="maxCrystalsLeft">0</td>
+            </tr>
+            <tr>
+                <td class="result">Predicted Crystals at level:</td>
+                <td id="predictedTotalCrystals">56</td>
+            </tr>
+            <tr>
+                <td class="result">Predicted Crystals remaining to be earned at this level:</td>
+                <td id="predictedCrystalsLeft">0</td>
+            </tr>
+        </table>
+    </body>
+</html>

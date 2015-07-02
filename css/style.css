@@ -1,0 +1,28 @@
+body {
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 1em auto;
+}
+
+@media screen and (min-width: 700px) {
+    body { width: 700px; }
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+    body { font-size: 130%; }
+}
+
+h2 {
+    padding: 0.5em;
+}
+
+table {
+    margin-top: 1em;
+}
+
+.result {
+    font-weight: bold;
+}
