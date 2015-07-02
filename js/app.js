@@ -112,6 +112,8 @@ $(document).ready(function () {
     function updateStuff() {
         var daysAwarded = $(".cb:checked").size();
         $("#daysAwarded").text(daysAwarded);
+        var earnedSoFar = daysAwarded * 2;
+        $("#earnedSoFar").text(earnedSoFar);
         var percentOfDaysAwarded = rnd((daysAwarded / daysSoFar) * 100);
         $("#actualChance").text(percentOfDaysAwarded + "%");
         var chanceForLevelInPercent = LEVEL_CHANCES[$("#levelSelect").val()];
